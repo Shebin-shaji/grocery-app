@@ -1,14 +1,24 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:grocery_app/core/constants/color_constants.dart';
 import 'package:grocery_app/features/cart/ui/cart.dart';
 import 'package:grocery_app/features/home/bloc/home_bloc.dart';
-import 'package:grocery_app/features/home/ui/product_tile_widget.dart';
-import 'package:grocery_app/features/home/ui/search_bar_widget.dart';
+import 'package:grocery_app/features/home/models/home_product_data_model.dart';
+import 'package:grocery_app/features/home/ui/tab_view_pages/all_page/all_page.dart';
+import 'package:grocery_app/features/home/ui/tab_view_pages/bakery_page/bakery_page.dart';
+import 'package:grocery_app/features/home/ui/tab_view_pages/fruits_page/fruits_page.dart';
+import 'package:grocery_app/features/home/ui/tab_view_pages/vegitables_page/vegitables_page.dart';
+import 'package:grocery_app/features/home/ui/widgets/add_container/add_container.dart';
+import 'package:grocery_app/features/home/ui/widgets/custom_tab_controller/custom_tab_controller.dart';
+
+import 'package:grocery_app/features/home/ui/widgets/search_bar_widget/search_bar_widget.dart';
+import 'package:grocery_app/features/profile_Page/profile_page.dart';
 import 'package:grocery_app/features/wish_list/ui/wish_list.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -20,6 +30,8 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+ 
+
   @override
   void initState() {
     homeBloc.add(HomeInitialEvent());
@@ -27,6 +39,7 @@ class _HomeState extends State<Home> {
   }
 
   final HomeBloc homeBloc = HomeBloc();
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<HomeBloc, HomeState>(
@@ -59,7 +72,7 @@ class _HomeState extends State<Home> {
               body: Container(
                 padding: EdgeInsets.only(top: 50, left: 40, right: 40),
                 child: Column(
-                  children: [
+                  children: [ 
                     //app bar row
 
                     Row(
@@ -109,43 +122,77 @@ class _HomeState extends State<Home> {
                         length: 4,
                         child: Column(
                           children: [
-                            Container(
-                              child: TabBar(
-                                indicatorPadding: EdgeInsets.only(top: 20),
-                                  dividerColor: ColorConstants.primaryBlack,
-                                  tabAlignment: TabAlignment.start,
-                                  padding: EdgeInsets.only(bottom: 20),
-                                  indicatorColor: ColorConstants.primaryWhite,
-                                  isScrollable: true,
-                                  tabs: [
-                                    Text(
-                                      "All",
-                                      style: TextStyle(
-                                          color: ColorConstants.primaryWhite,
-                                          fontSize: 18),
+                            // all tabs
+                            Column(
+                              children: [
+                                TabBar(
+                                    indicatorPadding: EdgeInsets.only(top: 20),
+                                    dividerColor: ColorConstants.primaryBlack,
+                                    tabAlignment: TabAlignment.start,
+                                    padding: EdgeInsets.only(bottom: 20),
+                                    indicatorColor: ColorConstants.primaryWhite,
+                                    isScrollable: true,
+                                    tabs: [
+                                      Padding(
+                                        padding: EdgeInsets.only(bottom: 15),
+                                        child: Text(
+                                          "All",
+                                          style: TextStyle(
+                                              color:
+                                                  ColorConstants.primaryWhite,
+                                              fontSize: 18),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.only(bottom: 15),
+                                        child: Text(
+                                          "Fruits",
+                                          style: TextStyle(
+                                              color:
+                                                  ColorConstants.primaryWhite,
+                                              fontSize: 18),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.only(bottom: 15),
+                                        child: Text(
+                                          "Vegitables",
+                                          style: TextStyle(
+                                              color:
+                                                  ColorConstants.primaryWhite,
+                                              fontSize: 18),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.only(bottom: 15),
+                                        child: Text(
+                                          "Bakery",
+                                          style: TextStyle(
+                                              color:
+                                                  ColorConstants.primaryWhite,
+                                              fontSize: 18),
+                                        ),
+                                      ),
+                                    ]),
+                                SizedBox(
+                                  width: double.maxFinite,
+                                  height: 450,
+                                  child: TabBarView(children: [
+                                    AllPage(
+                                      homeBloc: homeBloc,
+                                      productDataModel: succesState.products[0],
                                     ),
-                                    Text(
-                                      "Fruits",
-                                      style: TextStyle(
-                                          color: ColorConstants.primaryWhite,
-                                          fontSize: 18),
-                                    ),
-                                    Text(
-                                      "Vegitables",
-                                      style: TextStyle(
-                                          color: ColorConstants.primaryWhite,
-                                          fontSize: 18),
-                                    ),
-                                    Text(
-                                      "Bakery",
-                                      style: TextStyle(
-                                          color: ColorConstants.primaryWhite,
-                                          fontSize: 18),
-                                    ),
+                                    FruitsPage(),
+                                    VegitablesPage(),
+                                    ProfilePage()
                                   ]),
-                            )
+                                )
+                              ],
+                            ),
+
+                            //all tab views
                           ],
-                        ))
+                        )),
                   ],
                 ),
               ),
@@ -153,7 +200,7 @@ class _HomeState extends State<Home> {
           case HomeLoadingErrorState:
             return Scaffold(
               body: Center(
-                child: Text("error"),
+                child: Text("Something went wrong!"),
               ),
             );
           default:

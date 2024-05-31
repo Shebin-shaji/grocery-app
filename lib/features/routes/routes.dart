@@ -33,10 +33,12 @@ class _RoutesState extends State<Routes> {
             selectedItemColor: Colors.white,
             unselectedItemColor: Colors.grey,
             items: [
-              BottomNavigationBarItem(icon: Icon(Icons.home), label: ""),
-              BottomNavigationBarItem(icon: Icon(Icons.home), label: ""),
-              BottomNavigationBarItem(icon: Icon(Icons.home), label: ""),
-              BottomNavigationBarItem(icon: Icon(Icons.home), label: ""),
+              BottomNavigationBarItem(icon: Icon(Icons.home_filled), label: ""),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.favorite), label: ""),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.shopping_bag), label: ""),
+              BottomNavigationBarItem(icon: Icon(Icons.person), label: ""),
             ]));
   }
 }

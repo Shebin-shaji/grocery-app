@@ -38,7 +38,7 @@ class CartTileWidget extends StatelessWidget {
             productDataModel.name,
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 19),
           ),
-          Text(productDataModel.description),
+          Text("productDataModel.description"),
           SizedBox(
             height: 20,
           ),
