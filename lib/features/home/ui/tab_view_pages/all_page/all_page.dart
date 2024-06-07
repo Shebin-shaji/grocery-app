@@ -15,7 +15,6 @@ class AllPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return GridView.builder(
         physics: ScrollPhysics(),
-        
         shrinkWrap: false,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             mainAxisSpacing: 20,
