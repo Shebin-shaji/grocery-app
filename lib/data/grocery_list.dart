@@ -2,50 +2,47 @@ class AllGroceryData {
   static List<Map<String, dynamic>> groceryProducts = [
     {
       'id': '1',
-      'name': 'Apples',
-      'description': 'Fresh and crispy apples',
-      'price': 2.99,
-      'imageUrl': 'https://5.imimg.com/data5/AK/RA/MY-68428614/apple.jpg',
+      'name': 'Apple',
+      'price': 0.99,
+      'imageUrl':
+          'https://www.desktopbackground.org/download/1280x1024/2013/07/31/616007_red-apple-fruit-wallpapers-white-backgrounds_1680x1050_h.jpg',
+      'description':
+          'A fresh, crisp apple. Perfect for a snack or a healthy addition to your meals. '
+              'Enjoy its sweet and slightly tart flavor. Great source of fiber and vitamin C.',
+      'category': 'Fruits',
     },
     {
       'id': '2',
-      'name': 'Bananas',
-      'description': 'Ripe and sweet bananas',
-      'price': 1.99,
+      'name': 'Banana',
+      'price': 0.79,
       'imageUrl':
-          'https://fruitboxco.com/cdn/shop/products/asset_2_800x.jpg?v=1571839043',
+          'https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Banana_%28white_background%29.jpg/640px-Banana_%28white_background%29.jpg',
+      'description':
+          'A ripe, sweet banana. Ideal for smoothies, baking, or as a convenient snack. '
+              'Rich in potassium and natural sugars. Helps provide energy and supports muscle function.',
+      'category': 'Fruits',
     },
     {
       'id': '3',
-      'name': 'Milk',
-      'description': 'Whole milk, 1 liter',
-      'price': 3.49,
-      'imageUrl':
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsZ1wr_xPeTzwgwQc3o4dNoHaI_pV00JNFiLS26QTAuQ&s',
+      'name': 'Carrot',
+      'price': 0.49,
+      'imageUrl': 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Banana_%28white_background%29.jpg/640px-Banana_%28white_background%29.jpg',
+      'description':
+          'A crunchy, organic carrot. Delicious raw, roasted, or in soups and stews. '
+              'Packed with beta-carotene, which converts to vitamin A. Supports eye health and immune function.',
+      'category': 'Vegetables',
     },
     {
       'id': '4',
-      'name': 'Bread',
-      'description': 'Freshly baked bread loaf',
-      'price': 2.29,
+      'name': 'Tomato',
+      'price': 1.29,
       'imageUrl':
-          'https://www.bhg.com/thmb/ov2S31znAvSCXqrpgJQ8rwBgzp8=/2250x0/filters:no_upscale():strip_icc()/BHG-milk-bread-4CdeIL1uKGyB5ryU8J_EED-aaa76729c86a413ca7500029edba79f0.jpg',
-    },
-    {
-      'id': '5',
-      'name': 'Eggs',
-      'description': 'Grade A large eggs, dozen',
-      'price': 2.79,
-      'imageUrl':
-          'https://cdn.britannica.com/94/151894-050-F72A5317/Brown-eggs.jpg',
-    },
-    {
-      'id': '6',
-      'name': 'Tomatoes',
-      'description': 'Ripe and juicy tomatoes',
-      'price': 1.49,
-      'imageUrl':
-          'https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Tomato_je.jpg/1200px-Tomato_je.jpg',
+          'https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Banana_%28white_background%29.jpg/640px-Banana_%28white_background%29.jpg',
+      'description':
+          'A juicy, vine-ripened tomato. Essential for salads, sauces, and salsas. '
+              'Rich in lycopene, an antioxidant that may help reduce the risk of chronic diseases. '
+              'Adds vibrant color and flavor to your dishes.',
+      'category': 'Vegetables',
     },
   ];
 }

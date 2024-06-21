@@ -39,6 +39,7 @@ class _RoutesState extends State<Routes> {
               BottomNavigationBarItem(
                   icon: Icon(Icons.shopping_bag), label: ""),
               BottomNavigationBarItem(icon: Icon(Icons.person), label: ""),
-            ]));
+            ])
+            );
   }
 }

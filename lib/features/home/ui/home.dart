@@ -1,7 +1,6 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, type_literal_in_constant_pattern
 
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,18 +8,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:grocery_app/core/constants/color_constants.dart';
 import 'package:grocery_app/features/cart/ui/cart.dart';
 import 'package:grocery_app/features/home/bloc/home_bloc.dart';
-import 'package:grocery_app/features/home/models/home_product_data_model.dart';
-import 'package:grocery_app/features/home/ui/tab_view_pages/all_page/all_page.dart';
-import 'package:grocery_app/features/home/ui/tab_view_pages/bakery_page/bakery_page.dart';
-import 'package:grocery_app/features/home/ui/tab_view_pages/fruits_page/fruits_page.dart';
-import 'package:grocery_app/features/home/ui/tab_view_pages/vegitables_page/vegitables_page.dart';
-import 'package:grocery_app/features/home/ui/widgets/add_container/add_container.dart';
-import 'package:grocery_app/features/home/ui/widgets/custom_tab_controller/custom_tab_controller.dart';
+import 'package:grocery_app/features/home/ui/widgets/product_display_container/product_display_container.dart';
 
 import 'package:grocery_app/features/home/ui/widgets/search_bar_widget/search_bar_widget.dart';
-import 'package:grocery_app/features/profile_Page/profile_page.dart';
 import 'package:grocery_app/features/wish_list/ui/wish_list.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:grocery_app/widgets/heading_text_widget.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -30,8 +22,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
- 
-
   @override
   void initState() {
     homeBloc.add(HomeInitialEvent());
@@ -72,7 +62,8 @@ class _HomeState extends State<Home> {
               body: Container(
                 padding: EdgeInsets.only(top: 50, left: 40, right: 40),
                 child: Column(
-                  children: [ 
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
                     //app bar row
 
                     Row(
@@ -86,13 +77,7 @@ class _HomeState extends State<Home> {
                                     textStyle: TextStyle(
                                         color: ColorConstants.primaryGrey,
                                         fontSize: 20))),
-                            Text("Shebin Shaji",
-                                style: GoogleFonts.notoSans(
-                                  textStyle: TextStyle(
-                                      color: ColorConstants.primaryWhite,
-                                      fontSize: 26,
-                                      fontWeight: FontWeight.w600),
-                                ))
+                            HeadingTextWidget(text: "Shebin Shaji", size: 28)
                           ],
                         ),
                         Container(
@@ -117,82 +102,22 @@ class _HomeState extends State<Home> {
                     SizedBox(
                       height: 32,
                     ),
-
-                    DefaultTabController(
-                        length: 4,
-                        child: Column(
-                          children: [
-                            // all tabs
-                            Column(
-                              children: [
-                                TabBar(
-                                    indicatorPadding: EdgeInsets.only(top: 20),
-                                    dividerColor: ColorConstants.primaryBlack,
-                                    tabAlignment: TabAlignment.start,
-                                    padding: EdgeInsets.only(bottom: 20),
-                                    indicatorColor: ColorConstants.primaryWhite,
-                                    isScrollable: true,
-                                    tabs: [
-                                      Padding(
-                                        padding: EdgeInsets.only(bottom: 15),
-                                        child: Text(
-                                          "All",
-                                          style: TextStyle(
-                                              color:
-                                                  ColorConstants.primaryWhite,
-                                              fontSize: 18),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(bottom: 15),
-                                        child: Text(
-                                          "Fruits",
-                                          style: TextStyle(
-                                              color:
-                                                  ColorConstants.primaryWhite,
-                                              fontSize: 18),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(bottom: 15),
-                                        child: Text(
-                                          "Vegitables",
-                                          style: TextStyle(
-                                              color:
-                                                  ColorConstants.primaryWhite,
-                                              fontSize: 18),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(bottom: 15),
-                                        child: Text(
-                                          "Bakery",
-                                          style: TextStyle(
-                                              color:
-                                                  ColorConstants.primaryWhite,
-                                              fontSize: 18),
-                                        ),
-                                      ),
-                                    ]),
-                                SizedBox(
-                                  width: double.maxFinite,
-                                  height: 450,
-                                  child: TabBarView(children: [
-                                    AllPage(
-                                      homeBloc: homeBloc,
-                                      productDataModel: succesState.products[0],
-                                    ),
-                                    FruitsPage(),
-                                    VegitablesPage(),
-                                    ProfilePage()
-                                  ]),
-                                )
-                              ],
-                            ),
-
-                            //all tab views
-                          ],
-                        )),
+                    HeadingTextWidget(text: "Products", size: 23),
+                    SizedBox(
+                      height: 2,
+                    ),
+                    Expanded(
+                      child: ListView.separated(
+                        separatorBuilder: (context, index) => SizedBox(
+                          height: 15,
+                        ),
+                        itemBuilder: (context, index) =>
+                            ProductDisplayContainer(
+                                productDataModel: succesState.products[index],
+                                homeBloc: homeBloc),
+                        itemCount: succesState.products.length,
+                      ),
+                    )
                   ],
                 ),
               ),
